@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Melior AI – Dashboard</title>
+<style>
+:root{--bd:rgba(124,70,255,.4);--tx:#f1ecff;--mu:#a79bd0;--pu:#8b3cf7;--pk:#ec4899;--gr:#34d399}
+*{box-sizing:border-box}html,body{margin:0;background:#06030f}
+body{color:var(--tx);font:11px/1.3 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+#wrap{position:relative;width:100%}
+.app{position:absolute;left:0;top:0;width:1290px;height:720px;transform-origin:0 0;display:grid;grid-template-columns:175px 1fr 262px;grid-template-rows:56px 1fr;gap:0 12px;padding:10px 14px 12px 0;background:radial-gradient(900px 500px at 60% 0,#1d0b46 0,transparent 65%),radial-gradient(600px 400px at 0 100%,#150835 0,transparent 70%),#07030f}
+.sb{grid-row:1/3;padding:8px 12px;display:flex;flex-direction:column;gap:4px;border-right:1px solid #ffffff0d}
+.logo{display:flex;align-items:center;gap:8px;margin:2px 0 12px 2px}.logo b{font-size:19px;font-weight:800;letter-spacing:-.3px}.logo b span{background:linear-gradient(90deg,#c084fc,#f472b6);-webkit-background-clip:text;color:transparent}.logo small{display:block;font-size:8px;color:var(--mu)}
+.orb{border-radius:50%;background:radial-gradient(circle at 32% 30%,#fff,#e9d5ff 22%,#a855f7 55%,#4c1d95)}
+.nv{display:flex;align-items:center;gap:11px;padding:9px 12px;border-radius:10px;color:#cfc6ee;font-size:12.5px;font-weight:500;border:1px solid transparent;width:100%;text-align:left}
+.nv i{font-style:normal;width:16px;text-align:center;opacity:.9}.nv u{margin-left:auto;text-decoration:none;color:var(--mu);font-size:10px}
+.nv.on{background:linear-gradient(135deg,#6d28d9cc,#9333ea88);border-color:#a78bfa;box-shadow:0 0 18px #8b3cf788,inset 0 0 12px #ffffff14;color:#fff}
+.nv b{margin-left:auto;background:#7c3aed55;border:1px solid #a78bfa66;border-radius:6px;font-size:9px;padding:1px 6px}
+.sp{flex:1}
+.pn{background:linear-gradient(180deg,#1e1140ee,#120a2bee);border:1px solid var(--bd);border-radius:12px;padding:10px 12px}
+.bar{height:5px;border-radius:9px;background:#ffffff18;margin:6px 0 4px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,#7c3aed,#ec4899);border-radius:9px}
+.mb{display:block;width:100%;margin-top:7px;padding:6px;border-radius:8px;background:#7c3aed33;border:1px solid #a78bfa77;font-size:10.5px;font-weight:600;text-align:center}
+.top{grid-column:2/4;display:flex;align-items:center;gap:10px}
+.search{flex:1;display:flex;align-items:center;gap:8px;padding:0 14px;height:36px;border-radius:11px;background:#150c33cc;border:1px solid var(--bd);color:var(--mu);font-size:11px}
+.pill{display:flex;align-items:center;gap:7px;height:32px;padding:0 13px;border-radius:10px;background:#150c33cc;border:1px solid var(--bd);font-size:11px;font-weight:600;white-space:nowrap}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--gr);box-shadow:0 0 8px var(--gr)}
+.who{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700}.who small{display:block;color:var(--mu);font-weight:500;font-size:9px}
+.av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#f9a8d4,#7c3aed);display:grid;place-items:center;font-weight:800;font-size:12px}
+.cn{display:flex;flex-direction:column;gap:10px;min-height:0}
+.hero{position:relative;height:130px;border-radius:16px;border:1px solid var(--bd);overflow:hidden;padding:18px 20px;background:radial-gradient(420px 160px at 68% 70%,#7c2cf0cc,transparent 70%),radial-gradient(300px 120px at 20% 10%,#3b1a8a99,transparent 70%),linear-gradient(135deg,#150a33,#0b0620)}
+.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(1px 1px at 12% 40%,#fff,transparent),radial-gradient(1.5px 1.5px at 30% 80%,#fffb,transparent),radial-gradient(1px 1px at 55% 25%,#fff9,transparent),radial-gradient(2px 2px at 88% 30%,#fff,transparent),radial-gradient(1px 1px at 78% 85%,#fff9,transparent),radial-gradient(1px 1px at 45% 60%,#fff7,transparent)}
+.hero h1{margin:0;font-size:22px;font-weight:800;position:relative}.hero p{margin:4px 0 12px;color:#c9bff0;font-size:11.5px;position:relative}
+.chips{display:flex;gap:8px;position:relative}.chips span{padding:5px 10px;border-radius:9px;background:#ffffff0d;border:1px solid #ffffff1f;font-size:10px;color:#d9d0f5}
+.ringh{position:absolute;left:560px;top:56px;width:270px;height:62px;border:2px solid #c084fc88;border-radius:50%;transform:rotate(-8deg);box-shadow:0 0 24px #a855f7aa,inset 0 0 24px #a855f755}
+.mas{position:absolute;left:608px;top:2px;width:88px;filter:drop-shadow(0 0 16px #a855f7)}
+.fb{position:absolute;top:8px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:800;box-shadow:0 0 14px currentColor}
+.r1{display:grid;grid-template-columns:197fr 213fr 208fr 175fr;gap:10px;height:168px}
+.r2{display:grid;grid-template-columns:197fr 418fr 174fr;gap:10px;height:148px}
+.r3{display:grid;grid-template-columns:381fr 415fr;gap:10px;flex:1;min-height:0}
+.c{position:relative;border-radius:14px;border:1px solid var(--bd);padding:11px 12px;display:flex;flex-direction:column;gap:5px;overflow:hidden;background:linear-gradient(180deg,#1b0f3eee,#0f0826ee);box-shadow:0 0 22px #6d28d91f}
+.c h3{margin:0;font-size:12px;font-weight:700;display:flex;align-items:center;gap:7px}.c h3 i{font-style:normal;width:17px;height:17px;border-radius:50%;background:linear-gradient(135deg,#8b5cf6,#d946ef);display:grid;place-items:center;font-size:9px;font-weight:800}
+.c h3 small{font-weight:500;color:var(--mu);font-size:9px}
+.sub{font-size:9px;color:var(--mu)}
+.it{display:flex;align-items:center;gap:7px;font-size:10px;color:#e6defc;height:19px;white-space:nowrap}.it em{margin-left:auto;font-style:normal;color:var(--mu);font-size:9px}
+.sq{width:15px;height:15px;border-radius:5px;background:#7c3aed44;display:grid;place-items:center;font-size:8px;flex:none}
+.rv{margin-left:auto;padding:2px 8px;border-radius:6px;background:#7c3aed44;border:1px solid #a78bfa55;font-size:9px;font-weight:600}
+.go{margin-top:auto;display:flex;align-items:center;justify-content:center;gap:6px;height:24px;border-radius:9px;background:linear-gradient(90deg,#5b21b6,#7e22ce);border:1px solid #a78bfa;font-size:10.5px;font-weight:700;box-shadow:0 0 14px #7c3aed66}
+.go.pk{background:linear-gradient(90deg,#9d174d,#be185d);border-color:#f472b6;box-shadow:0 0 14px #ec489966}
+.tag{padding:1px 5px;border-radius:6px;font-size:8px;font-weight:700;background:#7c3aed44;color:#d8c7ff}
+.big{font-size:21px;font-weight:800;line-height:1}.dn{color:var(--gr);font-size:9px}
+.ag{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.ag div{min-width:0;overflow:hidden;display:flex;gap:4px;align-items:center;padding:5px 5px;border-radius:8px;background:#ffffff0a;border:1px solid #ffffff12;font-size:9px;font-weight:700;line-height:1.1}.ag small{display:block;font-weight:400;color:var(--mu);font-size:7.5px}.ag i{font-style:normal;font-size:13px}
+.tl{display:flex;align-items:center;gap:7px;font-size:9.5px;height:20px;color:#e6defc}.tl s{width:8px;height:8px;border-radius:50%;border:2px solid #c084fc;flex:none;text-decoration:none}
+.vt{display:grid;grid-template-columns:1fr 1fr;gap:6px;width:62%}.vt div{padding:6px 8px;border-radius:8px;background:#ffffff0a;border:1px solid #ffffff14;font-size:9.5px;font-weight:700;display:flex;gap:6px;align-items:center}.vt small{display:block;font-weight:400;color:var(--mu);font-size:8px}
+.shield{position:absolute;right:26px;top:22px;width:92px;height:96px;clip-path:polygon(50% 0,100% 15%,92% 70%,50% 100%,8% 70%,0 15%);background:linear-gradient(160deg,#a855f7,#4c1d95);display:grid;place-items:center;font-size:34px;filter:drop-shadow(0 0 14px #a855f7)}
+.dv{display:flex;align-items:center;gap:8px;height:24px;font-size:10px;border-bottom:1px solid #ffffff0d}.dv small{color:var(--mu);font-size:8px;display:block}
+.st{margin-left:auto;font-size:8.5px;padding:2px 8px;border-radius:6px;background:#10b98133;color:#6ee7b7}.st.idle{background:#f59e0b33;color:#fcd34d}
+.chat{grid-column:3;grid-row:2;display:flex;flex-direction:column;gap:10px;min-height:0}
+.cp{flex:1;min-height:0;padding:0}
+.cph{display:flex;align-items:center;gap:8px;padding:11px 12px;border-bottom:1px solid #ffffff10}.cph b{font-size:13px;background:linear-gradient(90deg,#c084fc,#f472b6);-webkit-background-clip:text;color:transparent}.cph small{display:block;color:var(--mu);font-size:8.5px}.cph span{margin-left:auto;color:var(--mu)}
+.log{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+.m{max-width:88%;padding:9px 11px;border-radius:12px;font-size:10.5px;line-height:1.4;white-space:pre-wrap}.m.a{background:#2a1a58;border:1px solid #6d4bd1aa;align-self:flex-start}.m.u{background:linear-gradient(135deg,#7c3aed,#c026d3);align-self:flex-end}
+.sg{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 10px}.sg button{padding:7px 10px;border-radius:9px;background:#ffffff0c;border:1px solid var(--bd);font-size:9.5px;font-weight:600}
+.inp{margin:0 12px 12px;display:flex;align-items:center;gap:8px;padding:6px 6px 6px 14px;border-radius:12px;background:#0d0721;border:1px solid #a78bfa;box-shadow:0 0 16px #8b5cf666}
+.inp input{flex:1;min-width:0;background:none;border:0;outline:0;color:var(--tx);font:inherit;font-size:11px}
+.snd{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#8b5cf6,#ec4899);display:grid;place-items:center;font-size:12px}
+.di{height:232px;flex:none}
+.ring{position:absolute;right:16px;bottom:34px;width:46px;height:46px;border-radius:50%;border:3px solid #c084fc;box-shadow:0 0 16px #a855f7,inset 0 0 12px #a855f755;display:grid;place-items:center;font-weight:800;font-size:13px}
+</style>
+</head>
+<body>
+<div id="wrap"><div class="app" id="app">
+<aside class="sb" id="sb"></aside>
+<div class="top">
+  <div class="search">🔍 Search anything... (docs, ideas, projects, code)<span style="margin-left:auto">⌘ K</span></div>
+  <div class="pill"><span class="dot"></span>AI Online</div><div class="pill">🔒 Private Mode</div><div class="pill">🛡️ Multi-AI</div>
+  <div class="pill" style="width:34px;padding:0;justify-content:center;position:relative">🔔<span style="position:absolute;top:6px;right:8px;width:6px;height:6px;border-radius:50%;background:#f43f5e"></span></div>
+  <div class="who"><div class="av">M</div><div>meliorlabs<small>Pro</small></div>⌄</div>
+</div>
+<div class="cn" id="cn"></div>
+<div class="chat">
+  <div class="c cp"><div class="cph"><div id="ca" style="width:34px;margin:-4px 0 -8px"></div><div><b>Melior</b><small>Your AI Companion</small></div><span>···&nbsp; ⤢</span></div>
+    <div class="log" id="log"><div class="m a">Good morning! ☀️ I've organized your day, reviewed what matters, and found a few opportunities for you.<br><br>Shall we get started?</div></div>
+    <div class="sg" id="sg"></div>
+    <div class="inp"><input id="qi" placeholder="Ask anything..."><span>🎤</span><button class="snd" id="qs">➤</button></div></div>
+  <div class="c di"><h3>✨ Daily Insight</h3><div style="font-size:10px;color:#d9d0f5;width:60%">You linked 118 memories this week with the Context Engine.<br><br>Keep it up! You're in the top 12% of users. 🚀</div>
+    <svg viewBox="0 0 240 90" style="position:absolute;left:8px;right:8px;bottom:6px;width:calc(100% - 16px)"><defs><linearGradient id="gi" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a855f7" stop-opacity=".55"/><stop offset="1" stop-color="#a855f7" stop-opacity="0"/></linearGradient></defs><path d="M0 80 C30 70 45 75 70 55 S115 62 140 38 S190 30 240 10 V90 H0Z" fill="url(#gi)"/><path d="M0 80 C30 70 45 75 70 55 S115 62 140 38 S190 30 240 10" fill="none" stroke="#d8b4fe" stroke-width="2.5"/></svg>
+    <div class="ring">12%</div></div>
+</div>
+</div></div>
+<script>
+const $=s=>document.querySelector(s);
+const MAS=(vb='0 0 120 150')=>`<svg viewBox="${vb}"><ellipse cx="60" cy="16" rx="30" ry="6" fill="none" stroke="#d8b4fe" stroke-width="3"/><circle cx="26" cy="40" r="14" fill="#2b1a14"/><circle cx="94" cy="40" r="14" fill="#2b1a14"/><circle cx="60" cy="64" r="34" fill="#a5683f"/><path d="M29 56a31 31 0 0 1 62 0" fill="none" stroke="#7c3aed" stroke-width="5"/><rect x="21" y="52" width="13" height="24" rx="6.5" fill="#a855f7"/><rect x="86" y="52" width="13" height="24" rx="6.5" fill="#a855f7"/><ellipse cx="46" cy="66" rx="5" ry="6.5" fill="#1b0f12"/><ellipse cx="74" cy="66" rx="5" ry="6.5" fill="#1b0f12"/><circle cx="47.5" cy="63.5" r="1.9" fill="#fff"/><circle cx="75.5" cy="63.5" r="1.9" fill="#fff"/><circle cx="38" cy="78" r="5" fill="#f472b6" opacity=".5"/><circle cx="82" cy="78" r="5" fill="#f472b6" opacity=".5"/><path d="M52 80q8 7 16 0" stroke="#4a2013" fill="none" stroke-width="2.5" stroke-linecap="round"/><path d="M30 150v-24a30 26 0 0 1 60 0v24z" fill="#f3efff"/><path d="M44 102q16 12 32 0" stroke="#a855f7" stroke-width="4" fill="none"/><path d="M60 136c-9-6-11-12-6-15 3-2 6 0 6 3 0-3 3-5 6-3 5 3 3 9-6 15z" fill="#ec4899"/></svg>`;
+const nav=[['🏠','Home'],['🧠','Memory'],['🤖','Agents','›'],['🔎','Research','›'],['📁','Projects','›'],['💡','Ideas'],['📄','Documents'],['⚡','Actions',8],['🔒','Privacy'],['⚙️','Settings']];
+$('#sb').innerHTML=`<div class="logo"><span class="orb" style="width:34px;height:34px"></span><div><b>Melior <span>AI</span></b><small>Your AI. Your second brain.</small></div></div>`+
+nav.map(([i,t,x],k)=>`<button class="nv${k?'':' on'}"><i>${i}</i>${t}${typeof x==='number'?`<b>${x}</b>`:x?`<u>${x}</u>`:''}</button>`).join('')+
+`<div class="sp"></div><div class="pn"><div style="display:flex;gap:8px;align-items:center">👑<div><small style="color:var(--mu);font-size:9px">Plan</small><div style="font-weight:700">Melior Pro</div></div></div><button class="mb">Manage Plan</button></div>
+<div class="pn" style="margin-top:8px;font-size:10px"><div style="display:flex;justify-content:space-between"><span>Storage</span><span>38%</span></div><div class="bar"><i style="width:38%"></i></div><span class="sub">38 GB of 100 GB used</span></div>`;
+document.querySelectorAll('.nv').forEach(b=>b.onclick=()=>{document.querySelectorAll('.nv').forEach(x=>x.classList.remove('on'));b.classList.add('on')});
+
+const it=(a,b='',ic='')=>`<div class="it">${ic?`<span class="sq">${ic}</span>`:''}${a}${b}</div>`;
+const go=(t,c='')=>`<button class="go ${c}">${t} &nbsp;➜</button>`;
+const card=(n,t,body,btn,sub='')=>`<div class="c"><h3><i>${n}</i>${t}${sub}</h3>${body}${btn}</div>`;
+const greet=(h=>h<12?'Good morning':h<18?'Good afternoon':'Good evening')(new Date().getHours());
+const d=new Date();
+$('#cn').innerHTML=`
+<div class="hero"><h1>${greet} 👋</h1><p>Here's what Melior prepared for you today.</p>
+ <div class="chips"><span>📅 ${d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'})}</span><span>🧠 Context Engine: active</span><span>🕗 ${d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})}</span></div>
+ <div class="ringh"></div><div class="mas">${MAS()}</div>
+ <div class="fb" style="left:592px;top:14px;background:#ec4899;color:#ec4899"><span style="color:#fff">♥</span></div><div class="fb" style="left:634px;top:2px;background:#a855f7;color:#a855f7"><span style="color:#fff">$</span></div><div class="fb" style="left:676px;top:14px;background:#3b82f6;color:#3b82f6"><span style="color:#fff">⌂</span></div></div>
+<div class="r1">
+ ${card(1,'Morning Brief',`<div class="sub">Top Priorities</div>${it('Prepare Q2 strategy deck','','✅')}${it('Follow up with Laura','','⭕')}${it('Workout &amp; wellness','','⭕')}<div style="position:absolute;right:6px;top:92px;width:42px">${MAS()}</div>`,go('Open brief'))}
+ ${card(2,'Action Center',`<div class="sub" style="color:#f472b6">8 awaiting your review</div>${it('Cancel Adobe sub.','<span class="rv">Review</span>','✉')}${it('Send follow-up to James','<span class="rv">High</span>','✉')}${it('Review AMEX bill','<span class="rv">Review</span>','▤')}${it('Approve email','<span class="rv">Medium</span>','✎')}`,go('Review actions','pk'))}
+ ${card(3,'Project Brain',`<div class="sub">Memories stored</div><div class="big">2,481 <span class="dn">↑ 8% this month</span></div>
+  <svg viewBox="0 0 200 44" style="width:100%;height:44px"><defs><linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a855f7" stop-opacity=".5"/><stop offset="1" stop-color="#a855f7" stop-opacity="0"/></linearGradient></defs><path d="M0 36 L25 30 L50 33 L80 22 L110 26 L140 14 L170 18 L200 4 V44 H0Z" fill="url(#g3)"/><path d="M0 36 L25 30 L50 33 L80 22 L110 26 L140 14 L170 18 L200 4" fill="none" stroke="#c084fc" stroke-width="2"/></svg>
+  <div style="display:flex;justify-content:space-between"><div><div class="sub">Active projects</div><b>12</b></div><div><div class="sub">Connections found</div><b style="color:var(--gr)">118</b></div></div>`,go('Open brain').replace('go ','go '),' ').replace('<small></small>','')}
+ ${card(4,'Context Engine',`<div class="sub">Working on right now</div>${it('Melior app','<span class="rv">Code</span>','💻')}${it('Study plan','<span class="rv">Notes</span>','📚')}${it('Podcast script','<span class="rv">Docs</span>','🎙')}${it('Kyoto trip','<span class="rv">Plan</span>','🗺')}`,go('View all'))}
+</div>
+<div class="r2">
+ ${card(5,'Memory Timeline',`<div class="sub">Recent memories</div><div class="tl"><s></s>8:15 AM&nbsp; Saved idea: AI coach</div><div class="tl"><s></s>Yesterday&nbsp; Uploaded receipt</div><div class="tl"><s></s>May 20&nbsp; Decision: ship v1</div><div class="tl"><s></s>May 19&nbsp; Project note</div>`,go('Open memory'))}
+ ${card(6,'Agent Team',`<div class="ag">${[['💻','Coder','Reads repos'],['📋','Planner','Plans tasks'],['🔬','Research','Finds &amp; cites'],['✍️','Writer','Drafts &amp; edits'],['📚','Tutor','Quizzes you'],['📈','Business','Strategy'],['🏛','Council','Critiques'],['🗂','Sorter','Sorts files'],['🎙','Voice','Talk to AI'],['🔌','Builder','Automates']].map(([i,a,b])=>`<div><i>${i}</i><span>${a}<small>${b}</small></span></div>`).join('')}</div>`,go('🚀 Launch an agent'),'<small>&nbsp; Your personal AI team, working for you.</small>')}
+ ${card(7,'Idea Vault',`<div class="sub">Capture. Refine. Make it real.</div>${it('Wellness coach','<span class="tag">App</span>⭐')}${it('Study planner','<span class="tag">Edu</span>⭐')}${it('Community hub','<span class="tag">Team</span>⭐')}`,go('Make it real','pk'))}
+</div>
+<div class="r3">
+ ${card(8,'Privacy Vault',`<div class="vt"><div>🔑<span>Memory Access<small>Only you</small></span></div><div>⇄<span>Data Sharing<small>Private</small></span></div><div>🛡<span>Agent Permissions<small>Custom</small></span></div><div>🗑<span>Auto Delete<small>90 days</small></span></div></div><div class="shield">🔒</div>`,'<button class="go" style="width:46%">Manage privacy</button>','<small>&nbsp; Your data. Your rules.</small>')}
+ ${card(9,'AI Council &amp; Multi-AI',`<div class="sub" style="margin-top:-2px">Models that critique each other's answers</div>${[['Melior 1.0','Default model','Active'],['Claude','Reviewer · 1 caveat','Active'],['GPT','Fact-checker · approves','Active'],['Gemini','Not connected','Idle']].map(([a,b,s])=>`<div class="dv"><span class="sq">🤖</span><div>${a}<small>${b}</small></div><span class="st ${s=='Idle'?'idle':''}">${s}</span></div>`).join('')}`,'')}
+</div>`;
+$('#ca').innerHTML=MAS('18 18 84 84');
+$('#sg').innerHTML=[['📅','What\'s on my agenda?'],['⭐','Show my top priorities'],['🔎','Search my memories'],['🏛','Ask the AI Council']].map(([i,t])=>`<button>${i} ${t}</button>`).join('');
+
+/* ===== Plug your backend in here (Supabase edge function, OpenAI, Claude, Ollama...) ===== */
+async function askAI(p){await new Promise(r=>setTimeout(r,600));return 'Demo reply: connect askAI() to your backend to get real answers and memory.'}
+async function send(t){if(!t.trim())return;const L=$('#log'),m=(c,x)=>{const e=document.createElement('div');e.className='m '+c;e.textContent=x;L.appendChild(e);L.scrollTop=1e9;return e};m('u',t);const w=m('a','…');w.textContent=await askAI(t);L.scrollTop=1e9}
+$('#qs').onclick=()=>{send($('#qi').value);$('#qi').value=''};$('#qi').onkeydown=e=>e.key==='Enter'&&$('#qs').click();
+$('#sg').onclick=e=>{const b=e.target.closest('button');if(b)send(b.textContent.slice(2))};
+document.querySelectorAll('.go').forEach(b=>b.onclick=()=>send(b.textContent.replace('➜','').trim()));
+
+/* ===== scale the 1290px design to fit any screen, so it looks the same everywhere ===== */
+function fit(){const s=Math.min(innerWidth/1290,innerHeight>innerWidth?9:innerHeight/720);const a=$('#app');a.style.transform=`scale(${s})`;a.style.left=Math.max(0,(innerWidth-1290*s)/2)+'px';$('#wrap').style.height=720*s+'px'}
+addEventListener('resize',fit);fit();
+</script>
+</body>
+</html>
